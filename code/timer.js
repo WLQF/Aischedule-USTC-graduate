@@ -59,6 +59,3 @@ async function scheduleTimer({
     ]
   }
 }
-//这里是git测试内容
-//修改1
-//修改2
