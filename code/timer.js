@@ -22,7 +22,15 @@ async function scheduleTimer({
   else if (startSemester == '秋季学期') {
     startDate = new Date(nowYear, 8, 1, 0, 0, 0)
   }
+  // console.log(startDate.toLocaleString())
+  // console.log(startDate.getDay())
+  
+  //将开始日期设置为本周日(一周从周日开始)
+  startDate.setDate(startDate.getDate()-startDate.getDay())
+  // console.log(startDate.toLocaleString())
+  // console.log(startDate.getDay())
   startSemesterTimeStr = startDate.getTime().toString()
+  //console.log(startDate.toLocaleString())
   await AIScheduleAlert({
     titleText: '提示',
     contentText: `-部分上课时间特殊的课程已添加注释，请注意检查冲突课程

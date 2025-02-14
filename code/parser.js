@@ -169,6 +169,5 @@ function scheduleHtmlParser(str) {
       })
     }
   }
-
   return result
 }
