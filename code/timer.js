@@ -28,6 +28,7 @@ async function scheduleTimer({
     contentText: `-部分上课时间特殊的课程已添加注释，请注意检查冲突课程
       -最近假期将不会显示课程，后续假期你可以重新导入来获取最新的排课
       -获取的课表较为零散，建议关闭“显示非本周课程”
+      -如果遇到问题，请反馈给我，在github提交issue
       -开学愉快！`,
     confirmText: '确认'
   })

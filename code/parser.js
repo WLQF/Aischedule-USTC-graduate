@@ -98,7 +98,11 @@ function scheduleHtmlParser(str) {
     teacherAssignmentList.forEach(teacherAssignment => {
       teacherList.push(teacherAssignment.name)
     })
-    const teacher = teacherList.join(",")
+
+    let teacher = teacherList.join(",")
+      //适配教师信息不全的研究所同学
+    if (teacher == "")
+      teacher = "未知教师"
 
     //课程基础信息
     const lessonResult = {
@@ -113,7 +117,7 @@ function scheduleHtmlParser(str) {
   })
 
   //根据scheduleList获取课程时间和地点
-  scheduleList.forEach(schedule => {
+  scheduleList.forEach((schedule,index) => {
     //课程时间
     lessonId = schedule.lessonId
     if (courseList[lessonId]) {
@@ -140,8 +144,14 @@ function scheduleHtmlParser(str) {
     }
 
     //课程地点
+    //适配教室信息不全的研究所同学
     if (courseList[lessonId].position == "") {
-      courseList[lessonId].position = schedule.room.building.campus.nameZh + schedule.room.nameZh
+      if (schedule.customPlace != null)
+        courseList[lessonId].position = schedule.customPlace
+      else if (schedule.room != null)
+        courseList[lessonId].position = schedule.room.building.campus.nameZh + schedule.room.nameZh
+      else if (index===scheduleList.length-1)
+        courseList[lessonId].position = "未知地点"
     }
   })
 
